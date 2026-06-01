@@ -1,0 +1,1 @@
+# synent-task4-responsive-landing-page-shah-stuti-jigneshkumar

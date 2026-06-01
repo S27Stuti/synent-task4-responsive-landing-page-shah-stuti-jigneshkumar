@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, #050505, #111111);
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* HEADER & NAVIGATION WRAPPER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(221, 160, 221, 0.15);
+            padding: 15px 4%;
+        }
+
+        /* NAVBAR */
+        #nav1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        /* LOGO */
+        h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        #span1 {
+            color: plum;
+            text-shadow: 0px 0px 12px plum;
+        }
+
+        /* FLEX CONTAINERS */
+        #div2, #div3, #div4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        #div3 {
+            flex-grow: 1;
+            max-width: 600px;
+        }
+
+        /* INPUTS & SELECTS */
+        select, input {
+            height: 45px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        select {
+            width: 160px;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        input {
+            width: 100%;
+            padding-left: 18px;
+        }
+
+        select:hover, input:hover, input:focus {
+            border-color: plum;
+            box-shadow: 0px 0px 10px plum;
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* BUTTONS */
+        button {
+            height: 45px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffb6ff, plum, #c471ed);
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0px 0px 15px rgba(221, 160, 221, 0.35);
+            padding: 0 22px;
+            white-space: nowrap;
+        }
+
+        button:hover {
+            background: black;
+            color: plum;
+            border: 1px solid plum;
+            transform: scale(1.05);
+            box-shadow: 0px 0px 15px plum;
+        }
+
+        /* CATEGORY BAR */
+        #main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 5px 0;
+            width: 100%;
+        }
+
+        #main::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for clean aesthetics */
+        }
+
+        #main p {
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+            color: #dddddd;
+        }
+
+        #main p:hover {
+            color: plum;
+            text-shadow: 0px 0px 10px plum;
+        }
+
+        /* MAIN CONTENT PADDING (Prevents header clipping) */
+        main {
+            margin-top: 160px;
+            padding: 20px 4%;
+        }
+
+        /* HERO SECTION */
+        #hero {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 20px;
+        }
+
+        #hero h2 {
+            color: plum;
+            text-shadow: 0px 0px 6px plum;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #hero p {
+            color: #aaaaaa;
+            margin-top: 14px;
+            font-size: 15px;
+        }
+
+        /* SECTION HEADING */
+        .section-title {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+            border-left: 4px solid plum;
+            padding-left: 10px;
+        }
+
+        /* PRODUCT SECTION & RESPONSIVE GRID */
+        .product-section {
+            margin-bottom: 60px;
+        }
+
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        /* PRODUCT CARD */
+        .box {
+            background: rgba(15, 15, 15, 0.95);
+            border-radius: 24px;
+            border: 1px solid rgba(221, 160, 221, 0.3);
+            box-shadow: 0px 0px 12px rgba(221, 160, 221, 0.18);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 25px 15px;
+            transition: 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .box:hover {
+            transform: translateY(-8px);
+            border-color: plum;
+            box-shadow: 0px 0px 18px plum;
+        }
+
+        .box img {
+            height: 140px;
+            width: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: 0.3s;
+        }
+
+        .box:hover img {
+            transform: scale(1.08);
+            box-shadow: 0px 0px 12px white;
+        }
+
+        .box h3 {
+            color: white;
+            font-size: 15px;
+            margin: 5px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 44px; /* Keeps card alignment identical */
+        }
+
+        .box .price {
+            color: plum;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .box .add-btn {
+            width: 100%;
+            max-width: 150px;
+            height: 38px;
+            font-size: 13px;
+            border-radius: 10px;
+            padding: 0;
+        }
+
+        /* FOOTER */
+        #footer {
+            width: 100%;
+            padding: 50px 4% 20px;
+            background: #0d0d0d;
+            border-top: 1px solid plum;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        #footer-logo h1 {
+            font-size: 28px;
+        }
+
+        /* SOCIAL ICONS */
+        #img {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        #img img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: 1px solid white;
+            object-fit: cover;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #img img:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 10px plum;
+            border-color: plum;
+        }
+
+        /* FOOTER LINKS */
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links h4 {
+            color: plum;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .footer-links p {
+            color: #cccccc;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-links p:hover {
+            color: plum;
+            text-shadow: 0px 0px 8px plum;
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #555;
+            font-size: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 900px) {
+            header {
+                position: relative; /* Un-fix elements on small screens to maintain scroll integrity */
+                padding: 15px 4%;
+            }
+
+            #nav1 {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            #div1 {
+                justify-content: center;
+                display: flex;
+            }
+
+            #div2 select {
+                width: 100%; /* Full screen selection width on mobile */
+            }
+
+            #div3 {
+                max-width: 100%;
+            }
+
+            #div4 button {
+                width: 100%;
+            }
+
+            #main {
+                justify-content: flex-start;
+                padding: 10px 0;
+            }
+
+            main {
+                margin-top: 0; /* Clear placeholder header gaps */
+                padding: 10px 4%;
+            }
+
+            #hero h2 {
+                font-size: 24px;
+            }
+
+            #footer {
+                grid-template-columns: 1fr; /* Stack footer elements vertically */
+                gap: 30px;
+                text-align: center;
+            }
+
+            #img {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav id="nav1">
+            <div id="div1">
+                <h1>Fresh<span id="span1">Mart</span></h1>
+            </div>
+            <div id="div2">
+                <select>
+                    <option>Select Location</option>
+                    <option>Mumbai</option>
+                    <option>Delhi</option>
+                    <option>Bangalore</option>
+                    <option>Vadodara</option>
+                </select>
+            </div>
+            <div id="div3">
+                <input type="text" placeholder="Search for products...">
+                <button id="b1">Search</button>
+            </div>
+            <div id="div4">
+                <button id="b2">Login</button>
+            </div>
+        </nav>
+
+        <div id="main">
+            <p>Laundry Care</p>
+            <p>Fresh Fruits</p>
+            <p>Vegetables</p>
+            <p>Snacks</p>
+            <p>Munchies</p>
+            <p>Electronics</p>
+            <p>Accessories</p>
+        </div>
+    </header>
+
+    <main>
+        <div id="hero">
+            <h2>Shop now and grab exclusive discounts on your favorite products</h2>
+            <p>Discover daily essentials, top brands, and amazing deals all in one place.</p>
+        </div>
+
+        <div class="product-section">
+            <h3 class="section-title">Laundry Care</h3>
+            <div class="box-container">
+                <div class="box">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7b846e31-dd64-44ee-9d8b-ddf44db8245e/Rin-Matic-Top-Load-Detergent-Liquid-Pouch.jpeg" alt="Rin Detergent">
+                    <h3>Rin Detergent</h3>
+                    <p class="price">₹199</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8f51292b-6a59-45a9-845b-08f25e48705e/Surf-Excel-Matic-Front-Load-Detergent-Liquid-Refill-Tough-Dried-Stain-Removal.jpg" alt="Surf Excel">
+                    <h3>Surf Excel Easy Wash</h3>
+                    <p class="price">₹249</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/dd47e0dc-2fea-48f0-bff7-9ac58efdbeb3/Ariel-Power-Gel-Liquid-Detergent-for-Top-load-washing-machine.jpeg" alt="Ariel">
+                    <h3>Ariel Matic Powder</h3>
+                    <p class="price">₹349</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/1c4fa033-cdee-4b18-9b9e-d03f23d54636/Softouch-Grapefruit-and-Jasmine-Fragrance-2X-Royal-Perfume-After-Wash-Fabric-Conditioner.jpeg" alt="Comfort Fabric">
+                    <h3>Comfort Fabric Softener</h3>
+                    <p class="price">₹179</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a57118f2-ea36-4d5a-97d2-2000dbbc2d95/Vanish-Liquid-Stain-Remover-Detergent-Booster-For-Clothes.jpeg" alt="Vanish">
+                    <h3>Vanish Stain Remover</h3>
+                    <p class="price">₹299</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <h3 class="section-title">Fresh Fruits & Vegetables</h3>
+            <div class="box-container">
+                <div class="box">
+                    <img src="https://bhoomifresh.com/image/cache/catalog/Fruits/shimla_apple-1000x1000.jpg" alt="Apples">
+                    <h3>Fresh Shimla Apple (4pcs)</h3>
+                    <p class="price">₹149</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://slafreshmart.com/uploads/img_69258f5046d0c7.11550849.webp" alt="Banana">
+                    <h3>Robusta Banana (1kg)</h3>
+                    <p class="price">₹55</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSV3k9E_LkiTRB_XZrvL_6pjnNfAGr-GmZOQ&s" alt="Tomato">
+                    <h3>Hybrid Tomato (1kg)</h3>
+                    <p class="price">₹39</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://www.bbassets.com/media/uploads/p/l/10000023_16-fresho-baby-potato.jpg" alt="Potato">
+                    <h3>Fresh Potato (1kg)</h3>
+                    <p class="price">₹28</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://nagabazaar.com/cdn/shop/files/Veggies-3.jpg?v=1747520006" alt="Onion">
+                    <h3>Fresh Onion (1kg)</h3>
+                    <p class="price">₹45</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <h3 class="section-title">Snacks & Munchies</h3>
+            <div class="box-container">
+                <div class="box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReOaQhX600IM0h-W3qqL4nwcOcgFeLsohdiw&s" alt="Lays">
+                    <h3>Lay's Cream & Onion</h3>
+                    <p class="price">₹20</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://m.media-amazon.com/images/I/71bHFGSZviL.jpg" alt="Doritos">
+                    <h3>Doritos Nacho Cheese</h3>
+                    <p class="price">₹30</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://www.mayabazaar.net/image/cache/catalog/haldiram_bhujiya_sev-850x850.jpg" alt="Haldirams">
+                    <h3>Haldiram's Bhujia Sev</h3>
+                    <p class="price">₹40</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://m.media-amazon.com/images/I/61WDkPKU3EL.jpg" alt="Dairy Milk">
+                    <h3>Dairy Milk Silk Fruit & Nut</h3>
+                    <p class="price">₹80</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://www.quickpantry.in/cdn/shop/products/cadbury-oreo-creame-biscuit-vanilla-46-3-g-quick-pantry.jpg?v=1710538227" alt="Oreo">
+                    <h3>Oreo Vanilla Biscuits</h3>
+                    <p class="price">₹35</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <h3 class="section-title">Electronics & Accessories</h3>
+            <div class="box-container">
+                <div class="box">
+                    <img src="https://i5.walmartimages.com/asr/fa0ca4e3-899b-4604-bc45-fc6da7a52f94.4e938353381d31ca30550261eece24bc.png" alt="Earpods">
+                    <h3>Apple EarPods (Lightning)</h3>
+                    <p class="price">₹1,900</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDPfcNazl1TWIye_gDBSawhO03s_ZkbycDTQ&s" alt="Power Bank">
+                    <h3>Mi 10000mAh Power Bank</h3>
+                    <p class="price">₹1,499</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://rukminim2.flixcart.com/image/480/640/k45x0nk0/headphone/h/6/h/boat-bassheads-100-original-imafn4qtgyxmm43a.jpeg?q=90" alt="Earphones">
+                    <h3>boAt Bassheads 100 Wired</h3>
+                    <p class="price">₹399</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://m.media-amazon.com/images/I/612n6EsASBL.jpg" alt="Pendrive">
+                    <h3>SanDisk Ultra 64GB USB 3.0</h3>
+                    <p class="price">₹529</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+                <div class="box">
+                    <img src="https://www.portronics.com/cdn/shop/files/Portronics_Muffs_A3_Black_Over_Ear_Wireless_Headphone_with_Mic.jpg?v=1772022818" alt="Headphones">
+                    <h3>Portronics Wireless Headphone</h3>
+                    <p class="price">₹999</p>
+                    <button class="add-btn" onclick="alert('Added to cart successfully')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div id="footer-logo">
+            <h1>Fresh<span id="span1">Mart</span></h1>
+            <div id="img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/CIS-A2K_Instagram_Icon_%28Black%29.svg/3840px-CIS-A2K_Instagram_Icon_%28Black%29.svg.png" alt="Instagram">
+                <img src="https://i.pinimg.com/564x/18/62/54/1862545290c37456f7fc801002c17893.jpg" alt="Twitter">
+                <img src="https://i.pinimg.com/736x/82/e9/81/82e9811f72a6ce840776821fe03a8a19.jpg" alt="Facebook">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYR-o-S4o3gQDm7X4WfDqhml2trbkjJ4I74g&s" alt="YouTube">
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h4>Company</h4>
+            <p>Home</p>
+            <p>Delivery Areas</p>
+            <p>Careers</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Legal</h4>
+            <p>Customer Support</p>
+            <p>Privacy Policy</p>
+            <p>Terms of Use</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Help</h4>
+            <p>Contact Us</p>
+            <p>Help & Support</p>
+            <p>Partner with Us</p>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 FreshMart. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

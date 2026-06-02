@@ -5,12 +5,13 @@ A modern and fully responsive landing page built using HTML, CSS, and JavaScript
 
 ## Project Demo
 
-🎥 YouTube Demo Video:
-https://youtu.be/gARn9b2AXv4?si=Fz9y76CFcQwDMYjg
+🎥 YouTube Demo Video: https://youtu.be/gARn9b2AXv4?si=Fz9y76CFcQwDMYjg
 
 ## Documentation
 
 📄 Project Report: Available in this repository
+
+📝 Internship Blog: https://medium.com/@stutu2004shah/my-web-development-internship-journey-at-synent-technologies-8b5065f1eb9d
 
 ## 🌐 Live Demo
 

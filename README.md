@@ -3,6 +3,15 @@
 
 A modern and fully responsive landing page built using HTML, CSS, and JavaScript. This project focuses on creating an attractive user interface, smooth user experience, and responsive design across different screen sizes.
 
+## Project Demo
+
+🎥 YouTube Demo Video:
+https://youtu.be/gARn9b2AXv4?si=Fz9y76CFcQwDMYjg
+
+## Documentation
+
+📄 Project Report: Available in this repository
+
 ## 🌐 Live Demo
 
 🔗 Live Website: https://gleeful-biscotti-164b17.netlify.app/
